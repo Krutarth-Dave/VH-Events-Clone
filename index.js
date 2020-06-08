@@ -18,6 +18,8 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'meetup',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
     title: 'Toronto - Leap | 2020',
@@ -28,6 +30,8 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'leap',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
     title: 'Vanhackathon for Startups',
@@ -38,6 +42,8 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'vanhackathon',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
     title: 'Vancouver Hiring Drive',
@@ -48,6 +54,8 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'recruitingmission',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
     title: 'Successful Career as a FrontEnd Engineer',
@@ -58,6 +66,8 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'openwebinar',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
     title: 'How to get a job in 2 months through VanHack',
@@ -68,10 +78,13 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'premiumwebinar',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
 ];
 
 function onClickEventType(type) {
+  /** onClick  of EventType to mutate the selected state of the event */
   eventTypes.forEach((event) => {
     if (type === event.id) {
       event.selected = true;
@@ -84,6 +97,7 @@ function onClickEventType(type) {
 }
 
 function renderEventCard(cardJS) {
+  /** Main Card Generator based on the eventJSON */
   let { title, time, location, isPremium, src, eventType, deadline } = cardJS;
   let dt = new Date(time).getDate();
   var months = [
@@ -168,14 +182,16 @@ function renderEventCard(cardJS) {
   ctaWrapper.className = 'CTA__Wrapper flex';
 
   let ctaSecondary = document.createElement('div');
-  let secondaryText = document.createTextNode('View Details');
+  let secondaryText = document.createTextNode('See Details');
   ctaSecondary.appendChild(secondaryText);
   ctaSecondary.className = 'CTA secondary';
+  ctaSecondary.onclick = onClickViewDetails.bind(null, cardJS);
 
   let ctaPrimary = document.createElement('div');
   let primaryText = document.createTextNode('Apply');
   ctaPrimary.appendChild(primaryText);
   ctaPrimary.className = 'CTA primary';
+  ctaPrimary.onclick = onClickApply.bind(null, cardJS);
 
   ctaWrapper.appendChild(ctaSecondary);
   ctaWrapper.appendChild(ctaPrimary);
@@ -191,6 +207,7 @@ function renderEventCard(cardJS) {
 }
 
 function renderCards() {
+  /** Fetched all the eventTypes and then gets the selected event, render events which has selected EventType */
   let cardWrapper = document.getElementById('CardWrapper');
   cardWrapper.innerHTML = '';
   eventTypes.forEach((eventType) => {
@@ -209,6 +226,7 @@ function renderCards() {
 }
 
 function renderEventTypes() {
+  /** driver function, which renders the different type of Events in the Header */
   const events = document.getElementById('events');
   events.innerHTML = '';
   eventTypes.forEach((event) => {
@@ -223,7 +241,145 @@ function renderEventTypes() {
     events.appendChild(li);
   });
 
+  /**  now render cards based on the selected eventType */
   renderCards();
 }
 
+function onClickViewDetails(event) {
+  let Modal = document.getElementById('Modal');
+  Modal.style.display = 'block';
+  viewDetailsModal(event);
+  // View Details
+}
+
+function renderModalHeader(event) {
+  const { title, about, eventType, location, time } = event;
+
+  let header = document.getElementById('Modal__Heading');
+  header.innerHTML = '';
+
+  let headerTitle = document.createElement('div');
+  headerTitle.className = 'Modal__Title';
+  let headingText = document.createTextNode(title);
+  headerTitle.appendChild(headingText);
+
+  let headerSubTitle = document.createElement('div');
+  headerSubTitle.className = 'Modal__SubTitle';
+  let subTitle =
+    location + ' | ' + new Date(time).toLocaleDateString() + ' | ' + eventType;
+  let headerSubTitleText = document.createTextNode(subTitle);
+  headerSubTitle.appendChild(headerSubTitleText);
+
+  header.appendChild(headerTitle);
+  header.appendChild(headerSubTitle);
+}
+
+function renderModalFooter(event) {
+  const { title, about, eventType, location, time } = event;
+
+  let footer = document.getElementById('Modal__Footer');
+  footer.innerHTML = '';
+
+  let footerTitle = document.createElement('div');
+  footerTitle.className = 'Modal__FooterTitle';
+
+  let headingText = document.createTextNode('Share This Event');
+  footerTitle.appendChild(headingText);
+
+  let shareWrapper = document.createElement('div');
+  shareWrapper.className = 'Modal__Share_Wrapper';
+
+  let twitterIcon = document.createElement('IMG');
+  twitterIcon.src = 'https://img.icons8.com/android/24/000000/twitter.png';
+  twitterIcon.className = 'Share_Icon';
+
+  let anchorTagTwitter = document.createElement('a');
+  anchorTagTwitter.href = `https://twitter.com/share?text=${encodeURI(
+    'https://vanhack.com/'
+  )}&url=${encodeURI(title)}`;
+  anchorTagTwitter.target = '_blank';
+  anchorTagTwitter.rel = 'noopener noreferrer';
+  anchorTagTwitter.appendChild(twitterIcon);
+
+  let facebookIcon = document.createElement('IMG');
+  facebookIcon.src =
+    'https://img.icons8.com/android/24/000000/facebook-new.png';
+  facebookIcon.className = 'Share_Icon';
+
+  let anchorTagFacebook = document.createElement('a');
+  anchorTagFacebook.href = `https://www.facebook.com/sharer.php?u=${encodeURI(
+    'https://vanhack.com/'
+  )}&p[title]=${encodeURI(title)}`;
+  anchorTagFacebook.target = '_blank';
+  anchorTagFacebook.rel = 'noopener noreferrer';
+  anchorTagFacebook.appendChild(facebookIcon);
+
+  shareWrapper.appendChild(anchorTagTwitter);
+  shareWrapper.appendChild(anchorTagFacebook);
+
+  let subTitle =
+    location + ' | ' + new Date(time).toLocaleDateString() + ' | ' + eventType;
+  let headerSubTitleText = document.createTextNode(subTitle);
+
+  footer.appendChild(footerTitle);
+  footer.appendChild(shareWrapper);
+}
+
+function viewDetailsModal(event) {
+  renderModalHeader(event);
+  const { about } = event;
+  let bodyTag = document.getElementById('Modal__Body');
+  bodyTag.innerHTML = '';
+  let body = document.createElement('div');
+  let bodyText = document.createTextNode(about);
+  body.appendChild(bodyText);
+  bodyTag.appendChild(body);
+
+  renderModalFooter(event);
+}
+
+function onClickApply(event) {
+  let Modal = document.getElementById('Modal');
+  Modal.style.display = 'block';
+  applyModal(event);
+  // Apply
+}
+
+function applyModal(event) {
+  renderModalHeader(event);
+
+  let bodyTag = document.getElementById('Modal__Body');
+
+  bodyTag.innerHTML = '';
+  let body = document.createElement('div');
+  let bodyText = document.createTextNode(
+    'Congratulations, You have successfully applied for the Event!'
+  );
+  body.appendChild(bodyText);
+  bodyTag.appendChild(body);
+
+  renderModalFooter(event);
+}
+
+function closeModal() {
+  const Modal = document.getElementById('Modal');
+  const close = document.getElementById('close');
+  close.onclick = function () {
+    Modal.style.display = 'none';
+  };
+
+  // When the user clicks anywhere outside of the Modal, close it
+  window.onclick = function (event) {
+    if (event.target == Modal) {
+      Modal.style.display = 'none';
+    }
+  };
+}
+
+function eventListeners() {
+  closeModal();
+}
+
 renderEventTypes();
+
+eventListeners();

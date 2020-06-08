@@ -227,3 +227,120 @@ h6 {
   border-radius: calc(var(--space-1) / 2);
   padding: 4px var(--space-1);
 }
+
+.Modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* The Close Button */
+.close {
+  color: #555;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin: var(--space-1);
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Header */
+.Modal__Header {
+  padding: var(--space-2);
+  background-color: #fff;
+  color: #333333;
+  border-radius: 4px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+/* Modal Body */
+.Modal__Body {
+  padding: var(--space-2);
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+/* Modal Footer */
+.Modal__Footer {
+  padding: var(--space-2);
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+}
+
+/* Modal Content */
+.Modal__Content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  top: 15%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  border-radius: var(--space-1);
+}
+
+.Modal__Title {
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: var(--space-1);
+  color: #333;
+  font-weight: 600;
+}
+
+.Modal__SubTitle {
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  font-weight: 400;
+}
+
+.Modal__FooterTitle {
+  padding: var(--space-1) 0;
+
+  font-size: 18px;
+  line-height: 24px;
+  color: #333;
+  font-weight: 500;
+}
+
+.Modal__Share_Wrapper {
+  color: #333;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Share_Icon {
+  display: inline-flex;
+  height: 18px;
+  width: 18px;
+  margin-right: var(--space-2);
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 15%;
+    opacity: 1;
+  }
+}
