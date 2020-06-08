@@ -1,26 +1,14 @@
 let eventTypes = [
   { id: 'all', name: 'All', selected: true },
   { id: 'meetup', name: 'Meetup' },
-  { id: 'leap', name: 'Leap' },
-  { id: 'recruitingmission', name: 'Recruiting Mission' },
-  { id: 'vanhackathon', name: 'VanHackathon' },
+  { id: 'leap', name: 'Leap', special: true },
+  { id: 'recruitingmission', name: 'Recruiting Mission', special: true },
+  { id: 'vanhackathon', name: 'VanHackathon', special: true },
   { id: 'premiumwebinar', name: 'Premium-only Webinar' },
   { id: 'openwebinar', name: 'Open Webinar' },
 ];
 
 let events = [
-  {
-    title: 'ReactJS - Meetup',
-    time: new Date().toISOString(), // ISO TimeString
-    deadline: new Date().toISOString(), // ISO TimeString
-    location: 'Vancouver, Canada',
-    isPremium: false,
-    src:
-      'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
-    eventType: 'meetup',
-    about:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
   {
     title: 'Toronto - Leap | 2020',
     time: new Date().toISOString(), // ISO TimeString
@@ -30,6 +18,7 @@ let events = [
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'leap',
+    special: true,
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
@@ -39,6 +28,7 @@ let events = [
     deadline: new Date().toISOString(), // ISO TimeString
     location: 'Online',
     isPremium: false,
+    special: true,
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'vanhackathon',
@@ -51,6 +41,7 @@ let events = [
     deadline: new Date().toISOString(), // ISO TimeString
     location: 'Vancouver, Canada',
     isPremium: false,
+    special: true,
     src:
       'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
     eventType: 'recruitingmission',
@@ -81,6 +72,18 @@ let events = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
+  {
+    title: 'ReactJS - Meetup',
+    time: new Date().toISOString(), // ISO TimeString
+    deadline: new Date().toISOString(), // ISO TimeString
+    location: 'Vancouver, Canada',
+    isPremium: false,
+    src:
+      'https://vanhackblobstorageprod.blob.core.windows.net/img/events/thumbnail/cf617efc-6c93-4a73-8fb9-570d6c2d31a5.jpg',
+    eventType: 'meetup',
+    about:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+  },
 ];
 
 function onClickEventType(type) {
@@ -98,7 +101,16 @@ function onClickEventType(type) {
 
 function renderEventCard(cardJS) {
   /** Main Card Generator based on the eventJSON */
-  let { title, time, location, isPremium, src, eventType, deadline } = cardJS;
+  let {
+    title,
+    time,
+    location,
+    isPremium,
+    src,
+    eventType,
+    deadline,
+    special,
+  } = cardJS;
   let dt = new Date(time).getDate();
   var months = [
     'January',
@@ -118,7 +130,7 @@ function renderEventCard(cardJS) {
 
   let deadlineDate = new Date(deadline).toLocaleDateString();
   let card = document.createElement('div');
-  card.className = 'Card';
+  card.className = `Card ${special ? 'scale' : ''}`;
 
   let cardHeader = document.createElement('div');
   cardHeader.className = 'Card__Header flex';
@@ -231,7 +243,9 @@ function renderEventTypes() {
   events.innerHTML = '';
   eventTypes.forEach((event) => {
     let li = document.createElement('LI');
-    li.className = `Event__Item ${event.selected ? 'selected' : ''}`;
+    li.className = `Event__Item ${event.selected ? 'selected' : ''} ${
+      event.special ? 'special' : ''
+    }`;
     li.id = event.id;
 
     let liText = document.createTextNode(event.name);
@@ -275,7 +289,7 @@ function renderModalHeader(event) {
 }
 
 function renderModalFooter(event) {
-  const { title, about, eventType, location, time } = event;
+  const { title, about, eventType, location, time, isPremium } = event;
 
   let footer = document.getElementById('Modal__Footer');
   footer.innerHTML = '';
@@ -314,15 +328,20 @@ function renderModalFooter(event) {
   anchorTagFacebook.rel = 'noopener noreferrer';
   anchorTagFacebook.appendChild(facebookIcon);
 
+  let ctaPrimary = document.createElement('div');
+  let primaryText = document.createTextNode('Buy Premium');
+  ctaPrimary.appendChild(primaryText);
+  ctaPrimary.className = 'CTA primary';
+  ctaPrimary.onclick = function () {
+    window.open('https://vanhack.com/premium', '_blank');
+  };
+
   shareWrapper.appendChild(anchorTagTwitter);
   shareWrapper.appendChild(anchorTagFacebook);
 
-  let subTitle =
-    location + ' | ' + new Date(time).toLocaleDateString() + ' | ' + eventType;
-  let headerSubTitleText = document.createTextNode(subTitle);
-
   footer.appendChild(footerTitle);
   footer.appendChild(shareWrapper);
+  if (isPremium) footer.appendChild(ctaPrimary);
 }
 
 function viewDetailsModal(event) {
@@ -349,12 +368,15 @@ function applyModal(event) {
   renderModalHeader(event);
 
   let bodyTag = document.getElementById('Modal__Body');
-
+  const { isPremium } = event;
   bodyTag.innerHTML = '';
   let body = document.createElement('div');
   let bodyText = document.createTextNode(
-    'Congratulations, You have successfully applied for the Event!'
+    isPremium
+      ? "You're trying to apply for a Premium Webinar, Please apply for Premium Membership to enjoy the benefits!"
+      : 'Congratulations, You have successfully applied for the Event!'
   );
+
   body.appendChild(bodyText);
   bodyTag.appendChild(body);
 
