@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Copy from here -->
+    <div class="max-width margin-auto padding">
+      <div class="Events padding-space4 flex baseline">
+        <h1 class="Title">Events</h1>
+        <ul id="events" class="Events__List flex">
+          <li class="Event__Item" id="all" onclick="onClickEventType('all')">
+            All
+          </li>
+          <li
+            class="Event__Item"
+            id="meetup"
+            onclick="onClickEventType('meetup')"
+          >
+            MeetUp
+          </li>
+          <li class="Event__Item" id="leap" onclick="onClickEventType('leap')">
+            Leap
+          </li>
+          <li
+            class="Event__Item"
+            id="recruitingmission"
+            onclick="onClickEventType('recruitingmission')"
+          >
+            Recruiting Mission
+          </li>
+          <li
+            class="Event__Item"
+            id="vanhackathon"
+            onclick="onClickEventType('vanhackathon')"
+          >
+            VanHackathon
+          </li>
+          <li
+            class="Event__Item"
+            id="premiumwebinar"
+            onclick="onClickEventType('premiumwebinar')"
+          >
+            Premium-only Webinar
+          </li>
+          <li
+            class="Event__Item"
+            id="openwebinar"
+            onclick="onClickEventType('openwebinar')"
+          >
+            Open Webinar
+          </li>
+        </ul>
+      </div>
+      <div class="CardWrapper flex padding-space4" id="CardWrapper"></div>
+    </div>
+
+    <!-- To here -->
+    <script type="text/javascript" src="./index.js" defer></script>
+  </body>
+</html>

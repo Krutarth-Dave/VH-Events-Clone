@@ -1,0 +1,229 @@
+body {
+  background: #f2f2f2;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.25;
+
+  font-size: 16px;
+  --space-1: 0.5rem; /* 8px */
+  --space-2: 1rem; /* 16px */
+  --space-3: 1.5rem; /* 24px */
+  --space-4: 2rem; /* 32px */
+  --space-5: 2.5rem; /* 40px */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Atomic CSS */
+.max-width {
+  max-width: 1240px;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.padding-space4 {
+  padding: var(--space-4);
+}
+
+.flex {
+  display: flex;
+}
+
+.baseline {
+  align-items: baseline;
+}
+
+/* Element Level CSS */
+
+.Title {
+  text-transform: capitalize;
+  padding-right: var(--space-1);
+  color: #333;
+  font-size: 28px;
+}
+
+.Events__List {
+  flex-wrap: wrap;
+  margin: 0;
+  max-width: 85%;
+  width: auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+.Event__Item {
+  margin: 0 var(--space-1);
+  cursor: pointer;
+  color: #999;
+  font-size: 14px;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.selected {
+  color: #0078ff;
+}
+
+.CardWrapper {
+  flex-wrap: wrap;
+}
+
+.Card {
+  margin: 0 var(--space-2) var(--space-2) 0;
+  border-radius: var(--space-1);
+  width: calc(var(--space-4) * 10);
+  min-width: calc(var(--space-4) * 10);
+  max-width: calc(var(--space-4) * 10);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.Card__Header {
+  max-height: calc(var(--space-2) * 10);
+  min-height: calc(var(--space-2) * 10);
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.Card__Header__Image {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.Card__Body {
+  padding: var(--space-1);
+  justify-content: space-between;
+  background: #fff;
+}
+
+.Card__Body__Left {
+  padding-top: var(--space-1);
+  width: 20%;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  align-items: center;
+  -webkit-box-align: center;
+  flex-shrink: 0;
+}
+
+.Card__Body__Right {
+  padding-top: var(--space-1);
+  width: 75%;
+  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-shrink: 0;
+}
+
+.Date {
+  color: #0078ff;
+  font-size: 12px;
+}
+
+.Month {
+  font-size: 12px;
+  margin-top: 3px;
+  color: #333;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.Event__Title {
+  color: #333;
+  font-size: 14px;
+}
+
+.Event__Info {
+  margin-top: 4px;
+  color: #999;
+  font-size: 12px;
+}
+
+.CTA__Wrapper {
+  justify-content: flex-end;
+  padding-top: var(--space-1);
+  padding-bottom: var(--space-2);
+  padding-left: var(--space-1);
+  padding-right: var(--space-1);
+  background-color: #fff;
+}
+
+.CTA {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 11px;
+  font-weight: 400;
+  padding: var(--space-1);
+  width: calc(var(--space-4) * 3);
+  border-radius: calc(var(--space-1) / 2);
+}
+
+.primary {
+  color: #fff;
+  background-color: #0078ff;
+}
+
+.primary:hover {
+  background-color: #0060cc;
+}
+.secondary {
+  background-color: #fff;
+  color: #0078ff;
+  border: 1px solid #0078ff;
+  margin-right: var(--space-1);
+}
+
+.secondary:hover {
+  background-color: #fff;
+  color: #0060cc;
+  border: 1px solid #0060cc;
+}
+
+.Card__Premium {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--space-2);
+  bottom: -11px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  right: 10px;
+  background-color: #0078ff;
+  color: #fff;
+  border-radius: calc(var(--space-1) / 2);
+  padding: 4px var(--space-1);
+}
